@@ -1,164 +1,119 @@
-# Python Weather App
+# Aether (에테르)
 
-날씨 및 대기질 정보를 실시간으로 확인할 수 있는 웹 애플리케이션입니다.
+[English](#english) | [한국어](#korean)
 
-A real-time weather and air quality monitoring web application.
+---
 
-## 🌟 Features / 기능
+<a name="korean"></a>
+## 🇰🇷 한국어 소개
 
-- 실시간 날씨 정보 조회 / Real-time weather information
-- 대기질 지수 (AQI) 모니터링 / Air Quality Index (AQI) monitoring
-- 여러 도시 동시 추적 / Multi-city tracking
-- 10초마다 자동 업데이트 / Auto-refresh every 10 seconds
-- PM2.5, PM10 미세먼지 농도 / Particulate matter levels
+**Aether**는 고대 그리스어로 '대기'를 뜻하는 이름처럼, 날씨와 대기질 정보를 가장 투명하고 아름답게 전달하는 웹 애플리케이션입니다. "Invisible Glass" 디자인 철학을 바탕으로 정보와 배경이 하나가 되는 몰입형 경험을 제공합니다.
 
-## 🏗️ Architecture / 아키텍처
+### 🚀 프로젝트 소개
 
-- **Backend**: Flask (Python)
-- **Frontend**: React + Vite
-- **API**: OpenWeatherMap API
+이 프로젝트는 **Flask** (백엔드)와 **React** (프론트엔드)로 구축된 실시간 날씨 모니터링 시스템입니다. 전 세계 도시의 날씨와 대기질(AQI) 정보를 10초마다 자동으로 업데이트하며, 미세먼지(PM2.5, PM10) 수치도 함께 제공합니다.
 
-## 📋 Prerequisites / 전제 조건
+### 🛠️ 기술 스택
+- **Frontend**: React, Vite, Framer Motion, Axios, Tailwind CSS (Invisible Glass Design)
+- **Backend**: Flask, Flask-Caching, Flask-CORS, Requests
+- **API**: OpenWeatherMap
 
-- Python 3.12+
-- Node.js 18+
-- OpenWeatherMap API Key ([Get it here](https://openweathermap.org/api))
+### � 설치 및 실행 방법
 
-## 🚀 Installation / 설치
+이 프로젝트는 `backend`와 `frontend`가 분리된 구조로 되어 있으며, 간편한 실행을 위해 `start.sh` 스크립트를 제공합니다.
 
-### 1. Clone the repository / 저장소 복제
-```bash
-git clone <repository-url>
-cd pythonWeather-main
-```
+#### 1. 필수 조건
+- Python 3.x
+- Node.js & npm
+- OpenWeatherMap API Key
 
-### 2. Set up Backend / 백엔드 설정
+#### 2. 환경 변수 설정
+각 폴더의 `.env.example` 파일을 복사하여 `.env` 파일을 생성하고 API 키를 입력하세요.
 
-```bash
-cd server
-
-# Install pipenv if you don't have it
-pip install pipenv
-
-# Install dependencies
-pipenv install
-
-# Create .env file from example
-cp .env.example .env
-
-# Edit .env and add your OpenWeatherMap API key
-# .env 파일을 열어 OpenWeatherMap API 키를 입력하세요
-```
-
-**`.env` file configuration / 설정:**
+**Backend (`backend/.env`)**
 ```env
-WEATHER_API_KEY=your_actual_api_key_here
+WEATHER_API_KEY=your_api_key_here
 FLASK_ENV=development
-CORS_ORIGIN=http://localhost:5173
 ```
 
-### 3. Set up Frontend / 프론트엔드 설정
+#### 3. 실행
+프로젝트 루트 디렉토리(`aether`)에서 다음 명령어를 실행하세요.
 
 ```bash
-cd ../client
-
-# Install dependencies
-npm install
-
-# Create .env file from example
-cp .env.example .env.local
-
-# The default values should work, but you can customize if needed
-# 기본값으로 작동하지만 필요시 수정 가능합니다
+chmod +x start.sh  # (최초 실행 시 권한 부여)
+./start.sh
 ```
 
-**`.env.local` file configuration / 설정:**
+스크립트가 실행되면 다음 주소에서 확인하실 수 있습니다:
+- **Web App**: http://localhost:5173
+- **Backend API**: http://localhost:5001
+
+### 📂 프로젝트 구조
+```
+aether/
+├── backend/            # Flask 서버 (날씨 데이터 캐싱 및 가공)
+│   ├── server.py       # 메인 서버 로직
+│   └── venv/           # Python 가상환경
+├── frontend/           # React 웹 애플리케이션
+│   ├── src/            # Components, Pages, Styles
+│   └── ...
+└── start.sh            # 통합 실행 스크립트
+```
+
+---
+
+<a name="english"></a>
+## 🇺🇸 English Description
+
+**Aether** takes its name from the ancient Greek word for 'atmosphere', delivering weather and air quality information in the most transparent and beautiful way. Built with the "Invisible Glass" design philosophy, it offers an immersive experience where information blends seamlessly with the background.
+
+### 🚀 Introduction
+
+A real-time weather monitoring system built with **Flask** (Backend) and **React** (Frontend). It automatically updates weather and Air Quality Index (AQI) information for cities worldwide every 10 seconds, including detailed particulate matter (PM2.5, PM10) levels.
+
+### 🛠️ Tech Stack
+- **Frontend**: React, Vite, Framer Motion, Axios, Tailwind CSS (Invisible Glass Design)
+- **Backend**: Flask, Flask-Caching, Flask-CORS, Requests
+- **API**: OpenWeatherMap
+
+### 💻 Installation & Usage
+
+This project is structured with separate `backend` and `frontend` directories and includes a `start.sh` script for easy execution.
+
+#### 1. Prerequisites
+- Python 3.x
+- Node.js & npm
+- OpenWeatherMap API Key
+
+#### 2. Environment Setup
+Copy `.env.example` to `.env` in both directories and configure your API key.
+
+**Backend (`backend/.env`)**
 ```env
-VITE_API_URL=http://localhost:5001
+WEATHER_API_KEY=your_api_key_here
+FLASK_ENV=development
 ```
 
-## 🎮 Running the Application / 실행
+#### 3. Running the App
+Run the following commands from the project root directory (`aether`):
 
-### Start Backend / 백엔드 시작
 ```bash
-cd server
-pipenv run python server.py
+chmod +x start.sh  # (Grant permission if needed)
+./start.sh
 ```
 
-The backend will run on `http://localhost:5001`
+Once running, you can access:
+- **Web App**: http://localhost:5173
+- **Backend API**: http://localhost:5001
 
-### Start Frontend / 프론트엔드 시작
-```bash
-cd client
-npm run dev
+### � Project Structure
 ```
-
-The frontend will run on `http://localhost:5173`
-
-## 🧪 Testing / 테스트
-
-### Test Backend API / 백엔드 API 테스트
-```bash
-# Health check
-curl http://localhost:5001/api/health
-
-# Get weather for a city
-curl "http://localhost:5001/api/weather?city=Seoul"
-
-# Get air quality
-curl "http://localhost:5001/api/air-quality?lat=37.5665&lon=126.9780"
+aether/
+├── backend/            # Flask server (Caching & Processing)
+│   ├── server.py       # Main server logic
+│   └── venv/           # Python virtual environment
+├── frontend/           # React web application
+│   ├── src/            # Components, Pages, Styles
+│   └── ...
+└── start.sh            # Execution script
 ```
-
-## 🛠️ API Endpoints
-
-### `GET /api/health`
-Health check endpoint
-- **Response**: `{ "status": "healthy", "timestamp": "...", "environment": "..." }`
-
-### `GET /api/weather?city={city_name}`
-Get weather data for a specific city
-- **Parameters**: `city` (string, required)
-- **Response**: Weather data including temperature, description, etc.
-
-### `GET /api/air-quality?lat={latitude}&lon={longitude}`
-Get air quality data for coordinates
-- **Parameters**: 
-  - `lat` (float, required)
-  - `lon` (float, required)
-- **Response**: Air quality index and particulate matter levels
-
-## 🔧 Configuration / 설정
-
-### Environment Variables / 환경 변수
-
-**Backend (`server/.env`)**:
-- `WEATHER_API_KEY`: Your OpenWeatherMap API key (required)
-- `FLASK_ENV`: Development or production mode
-- `CORS_ORIGIN`: Allowed CORS origin (default: http://localhost:5173)
-
-**Frontend (`client/.env.local`)**:
-- `VITE_API_URL`: Backend API URL (default: http://localhost:5001)
-
-## 📝 Development Notes / 개발 노트
-
-- 서버는 10초 캐싱을 사용하여 API 호출을 최소화합니다
-- The server uses 10-second caching to minimize API calls
-- 클라이언트는 10초마다 자동으로 데이터를 새로고침합니다
-- The client auto-refreshes data every 10 seconds
-
-## 🔒 Security / 보안
-
-- API 키는 절대 코드에 하드코딩하지 마세요
-- Never hardcode API keys in the code
-- `.env` 파일은 `.gitignore`에 포함되어 있습니다
-- `.env` files are included in `.gitignore`
-- 항상 `.env.example` 템플릿을 사용하세요
-- Always use `.env.example` templates
-
-## 📄 License
-
-MIT License
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
